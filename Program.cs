@@ -57,7 +57,11 @@
                         break;
 
                     case "3":
-                        Console.WriteLine();
+                        foreach (Book book in bookList){
+							Console.WriteLine("BookTitle--"+book.BookTitle);
+						}
+
+                        
                         break;
 
                     case "4":
