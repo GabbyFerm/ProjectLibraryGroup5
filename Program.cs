@@ -29,9 +29,50 @@
                 switch(chooseMenuOption)
                 {
                     case "1":
-                        Console.WriteLine();
-                        break;
+                        Console.WriteLine("Skriv titeln på boken som du vill lägga till: ");
+                        string newBookTitle = Console.ReadLine()!;
 
+                        Console.WriteLine("Skriv författaren till boken som du vill lägga till: ");
+                        string newBookAuthor = Console.ReadLine()!;
+
+                        int newBookISBN;
+
+                        while (true)
+                        {
+                            Console.WriteLine("Skriv ISBN-numret på boken som du vill lägga till: ");
+                            string  newBookISBNStrin = Console.ReadLine()!;
+
+                            if (newBookISBNStrin.All(char.IsDigit))
+                            {
+                                newBookISBN = Convert.ToInt32(newBookISBNStrin);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ogiltig inmatning. Vänligen ange endast siffror för ISBN.");
+
+                            }
+                        }
+
+                        bool bookAlreadyExists = false;
+
+                        foreach (Book book in bookList)
+                        {
+                            if (book.BookTitle == newBookTitle || book.ISBN == newBookISBN)
+                            {
+                                Console.WriteLine("Den här bokentiteln eller ISBN-numret finns redan i biblioteket.");
+                                bookAlreadyExists = true;
+                                break;
+                            }
+                        }
+
+                        if (!bookAlreadyExists)
+                        {
+                            bookList.Add(new Book(newBookTitle, newBookAuthor, newBookISBN));
+                            Console.WriteLine($"Du har lagt till en ny bok - Titel: {newBookTitle}, Författare: {newBookAuthor}, ISBN: {newBookISBN}");
+                        }
+
+                        break;
                     case "2": 
                         Console.WriteLine("Ange titeln på boken du vill ta bort:");
 
