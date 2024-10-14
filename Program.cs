@@ -115,7 +115,27 @@
                         break;
 
                     case "6":
-                        Console.WriteLine();
+                        Console.WriteLine("Ange titlen på boken du vill returnera");
+                        string bookToReturn = Console.ReadLine()!;
+                        bool bookfound = false;
+
+                        foreach (Book book in bookList)
+                        {
+                            if (book.BookTitle.Equals(bookToReturn, StringComparison.OrdinalIgnoreCase)) 
+                            {
+                                book.BookTitle = bookToReturn;
+                                Console.WriteLine($" Boken '{bookToReturn}' har returnerats.");
+                                bookFound = true;
+                                break;
+
+                            }
+                        }
+                        if (!bookfound)
+                            
+                        {
+                            Console.WriteLine($"Boken '{bookToReturn}' hittades inte i biblioteket.");
+                        }
+
                         break;
 
                     case "7":
