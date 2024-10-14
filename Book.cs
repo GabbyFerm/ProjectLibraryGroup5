@@ -18,6 +18,7 @@ namespace ProjectLibraryGroup5
             BookTitle = bookTitle;
             BookAuthor = bookAuthor;
             ISBN = iSBN;
+            IsCheckedOut = false;
         }
 
 
