@@ -111,7 +111,31 @@
                         break;
 
                     case "5":
-                        Console.WriteLine();
+
+                        Console.WriteLine("Ange boken du vill låna");
+                        string booktoBorrow = Console.ReadLine()!;
+                        bool borrowFound = false;
+
+                        foreach (Book book in bookList)
+                        {
+                            if (book.BookTitle.Equals(booktoBorrow, StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine($"Du har lånat '{book.BookTitle}'.\n");
+                                bookFound = true;
+                                break;
+                            }
+
+                            if (!borrowFound)
+
+                            {
+
+                                Console.WriteLine("Boken hittades inte.\n");
+                                break;
+
+                            }
+
+                        }
+
                         break;
 
                     case "6":
