@@ -98,7 +98,12 @@
                         break;
 
                     case "3":
-                        Console.WriteLine();
+                        Console.WriteLine("\nAnge titeln på boken för att söka:");
+                        string searchTitle = Console.ReadLine()!;
+                        SearchBookByTitle(searchTitle, bookList);
+                        
+                        
+
                         break;
 
                     case "4":
@@ -122,6 +127,18 @@
                 }
                     
 
+            }
+        }
+        static void SearchBookByTitle(string titleToSearch, List<Book> BookList)
+        {
+            var foundBook = BookList.Find(b => b.BookTitle.ToLower() == titleToSearch.ToLower());
+            if (foundBook != null)
+            {
+                Console.WriteLine($"hittade bok: Title: {foundBook.BookTitle}, Author: {foundBook.BookAuthor}, ISBN: {foundBook.ISBN}");
+            }
+            else
+            {
+                Console.WriteLine("Boken hittades inte.");
             }
         }
     }
