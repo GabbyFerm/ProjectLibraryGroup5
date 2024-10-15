@@ -20,7 +20,5 @@ namespace ProjectLibraryGroup5
             ISBN = iSBN;
             IsCheckedOut = false;
         }
-
-
     }
 }
