@@ -16,7 +16,7 @@
 
             while (true)
             {
-                Console.WriteLine("Välj ett alternativ:");
+                Console.WriteLine("\nVälj ett alternativ:");
                 Console.WriteLine("1 - Lägg till en bok");
                 Console.WriteLine("2 - Ta bort en bok");
                 Console.WriteLine("3 - Sök efter en bok");
@@ -109,7 +109,7 @@
                         Console.WriteLine("visa alla böcker:");
                         foreach (Book book in bookList)
                         {
-                            Console.WriteLine("BookTitle--" + book.BookTitle);
+                            Console.WriteLine("Titel: " + book.BookTitle + " | Författare: " + book.BookAuthor + " | ISBN: " + book.ISBN);
                         }
 
 
@@ -126,7 +126,7 @@
                         {
                             if (book.BookTitle.Equals(booktoBorrow, StringComparison.OrdinalIgnoreCase))
                             {
-                                bookFound = true;
+                                borrowFound = true;
 
                                 if (book.IsCheckedOut)
                                 {
@@ -140,14 +140,14 @@
 
                                 }
                                 break;
-                            }
-
-                            if (!borrowFound)
-                            {
-                                Console.WriteLine("Boken hittades inte.\n");
-                                break;
 
                             }
+                        }
+                        if (!borrowFound)
+                        {
+                            Console.WriteLine("Boken hittades inte.\n");
+                            break;
+
                         }
 
                         break;
@@ -156,13 +156,13 @@
 
                         Console.WriteLine("Ange titlen på boken du vill returnera");
                         string bookToReturn = Console.ReadLine()!;
-                        bool bookfound = false;
+                        bool returnFound = false;
 
                         foreach (Book book in bookList)
                         {
                             if (book.BookTitle.Equals(bookToReturn, StringComparison.OrdinalIgnoreCase))
                             {
-                                bookFound = true;
+                                returnFound = true;
 
                                 if (book.IsCheckedOut)
                                 {
@@ -178,12 +178,14 @@
                                 break;
                             }
 
-                            if (!bookfound)
-                            {
-                                Console.WriteLine($"Boken '{bookToReturn}' hittades inte i biblioteket.");
-                                break;
-                            }
+
                         }
+
+                        if (!returnFound)
+                        {
+                            Console.WriteLine($"Boken '{bookToReturn}' hittades inte i biblioteket.");
+                        }
+
 
                         break;
 
