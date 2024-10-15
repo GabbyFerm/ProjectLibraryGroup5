@@ -13,6 +13,7 @@
 
             Console.WriteLine("Välkommen till vårt bibliotek.\n");
 
+
             while (true)
             {
                 Console.WriteLine("Välj ett alternativ:");
@@ -26,7 +27,7 @@
 
                 string chooseMenuOption = Console.ReadLine()!;
 
-                switch(chooseMenuOption)
+                switch (chooseMenuOption)
                 {
                     case "1":
                         Console.WriteLine("Skriv titeln på boken som du vill lägga till: ");
@@ -40,7 +41,7 @@
                         while (true)
                         {
                             Console.WriteLine("Skriv ISBN-numret på boken som du vill lägga till: ");
-                            string  newBookISBNStrin = Console.ReadLine()!;
+                            string newBookISBNStrin = Console.ReadLine()!;
 
                             if (newBookISBNStrin.All(char.IsDigit))
                             {
@@ -73,7 +74,7 @@
                         }
 
                         break;
-                    case "2": 
+                    case "2":
                         Console.WriteLine("Ange titeln på boken du vill ta bort:");
 
                         string bookToRemove = Console.ReadLine()!;
@@ -86,11 +87,11 @@
                                 bookList.Remove(book);
                                 Console.WriteLine($"{bookToRemove} har tagits bort.\n");
                                 bookFound = true;
-                                break;  
+                                break;
                             }
                         }
-                        
-                        if (!bookFound) 
+
+                        if (!bookFound)
                         {
                             Console.WriteLine("Boken hittades inte.");
                         }
@@ -101,8 +102,6 @@
                         Console.WriteLine("\nAnge titeln på boken för att söka:");
                         string searchTitle = Console.ReadLine()!;
                         SearchBookByTitle(searchTitle, bookList);
-                        
-                        
 
                         break;
 
@@ -127,27 +126,34 @@
                         {
                             if (book.BookTitle.Equals(booktoBorrow, StringComparison.OrdinalIgnoreCase))
                             {
-                                Console.WriteLine($"Du har lånat '{book.BookTitle}'.\n");
                                 bookFound = true;
+
+                                if (book.IsCheckedOut)
+                                {
+                                    Console.WriteLine($"Boken {book.BookTitle} är utlånad");
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Du har lånat '{book.BookTitle}'.\n");
+                                    book.IsCheckedOut = true;
+
+                                }
                                 break;
                             }
 
                             if (!borrowFound)
-
                             {
-
                                 Console.WriteLine("Boken hittades inte.\n");
                                 break;
 
                             }
-
                         }
 
                         break;
 
                     case "6":
-                      
-                        
+
                         Console.WriteLine("Ange titlen på boken du vill returnera");
                         string bookToReturn = Console.ReadLine()!;
                         bool bookfound = false;
@@ -156,24 +162,30 @@
                         {
                             if (book.BookTitle.Equals(bookToReturn, StringComparison.OrdinalIgnoreCase))
                             {
-                                book.BookTitle = bookToReturn;
-                                Console.WriteLine($" Boken '{bookToReturn}' har returnerats.");
                                 bookFound = true;
-                              
-                               break;
+
+                                if (book.IsCheckedOut)
+                                {
+                                    book.BookTitle = bookToReturn;
+                                    Console.WriteLine($" Boken '{bookToReturn}' har returnerats.");
+                                    book.IsCheckedOut = false;
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Boken är inte utlånad.\n");
+                                }
+                                break;
                             }
-                            if (!bookfound) 
-                            { 
+
+                            if (!bookfound)
+                            {
                                 Console.WriteLine($"Boken '{bookToReturn}' hittades inte i biblioteket.");
                                 break;
                             }
                         }
 
-
-                        
-                       
                         break;
-                        
 
                     case "7":
                         return;
@@ -182,7 +194,7 @@
                         Console.WriteLine("Felaktigt val, försök igen. \n");
                         break;
                 }
-                    
+
 
             }
         }
