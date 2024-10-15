@@ -107,8 +107,15 @@
                         break;
 
                     case "4":
-                        Console.WriteLine();
-                        break;
+                        Console.WriteLine("visa alla böcker:");
+                        foreach (Book book in bookList)
+                        {
+                            Console.WriteLine("BookTitle--" + book.BookTitle);
+                        }
+
+
+                        break;                      
+                       
 
                     case "5":
 
